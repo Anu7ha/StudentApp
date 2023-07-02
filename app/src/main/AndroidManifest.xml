@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.App"
+        tools:targetApi="31">
+        <activity
+            android:name=".attendsix"
+            android:exported="false" />
+        <activity
+            android:name=".attendance"
+            android:exported="false" />
+        <activity
+            android:name=".DatabaseHelper"
+            android:exported="false" />
+        <activity
+            android:name=".madnotes"
+            android:exported="false" />
+        <activity
+            android:name=".wtanotes"
+            android:exported="false" />
+        <activity
+            android:name=".cgnotes"
+            android:exported="false" />
+        <activity
+            android:name=".sscnotes"
+            android:exported="false" />
+        <activity
+            android:name=".atcnotes"
+            android:exported="false" />
+        <activity
+            android:name=".dbmsn"
+            android:exported="false" />
+        <activity
+            android:name=".adpnotes"
+            android:exported="false" />
+        <activity
+            android:name=".cnotes"
+            android:exported="false" />
+        <activity
+            android:name=".cgpa"
+            android:exported="false" />
+        <activity
+            android:name=".atc"
+            android:exported="false" />
+        <activity
+            android:name=".cn"
+            android:exported="false" />
+        <activity
+            android:name=".adp"
+            android:exported="false" />
+        <activity
+            android:name=".dbms"
+            android:exported="false" />
+        <activity
+            android:name=".cg"
+            android:exported="false" />
+        <activity
+            android:name=".mad"
+            android:exported="false" />
+        <activity
+            android:name=".wta"
+            android:exported="false" />
+        <activity
+            android:name=".ssc"
+            android:exported="false" />
+        <activity
+            android:name=".six"
+            android:exported="false" />
+        <activity
+            android:name=".five"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
