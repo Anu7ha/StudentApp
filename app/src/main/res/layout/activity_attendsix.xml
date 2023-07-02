@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SSC"
+            android:text="  SSC"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -97,7 +97,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CG"
+            android:text="  CG"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -178,7 +178,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="WTA"
+            android:text="  WTA"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -258,7 +258,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MAD LAB"
+            android:text="  MAD LAB"
             android:textSize="16sp"
             android:textStyle="bold" />
 
