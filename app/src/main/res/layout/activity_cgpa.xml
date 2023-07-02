@@ -173,14 +173,14 @@
 
     <TextView
         android:id="@+id/t1"
-        android:layout_width="233dp"
-        android:layout_height="75dp"
+        android:layout_width="255dp"
+        android:layout_height="85dp"
         android:textAlignment="viewStart"
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.96"
+        app:layout_constraintHorizontal_bias="0.942"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.961" />
@@ -450,16 +450,16 @@
 
     <Button
         android:id="@+id/cal"
-        android:layout_width="122dp"
-        android:layout_height="48dp"
+        android:layout_width="97dp"
+        android:layout_height="43dp"
         android:background="#9BA3CC"
         android:onClick="calculateCGPA"
         android:text="calculate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.128"
+        app:layout_constraintHorizontal_bias="0.054"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.935" />
+        app:layout_constraintVertical_bias="0.942" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
