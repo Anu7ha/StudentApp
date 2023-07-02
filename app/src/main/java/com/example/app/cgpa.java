@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.DecimalFormat;
+
 public class cgpa extends AppCompatActivity {
 
     public EditText[] etCredits = new EditText[8];
@@ -70,6 +72,12 @@ public class cgpa extends AppCompatActivity {
         }
 
         float cgpa = weightedSGPA / totalCredits;
+
+        // Round CGPA to two decimal places
+        cgpa = Math.round(cgpa * 100) / 100f;
+
+        DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+        String formattedCGPA = decimalFormat.format(cgpa);
 
         // Display CGPA
         tvResult.setText("Your CGPA: " + cgpa);
