@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.DecimalFormat;
+
 public class attendsix extends AppCompatActivity {
 
     private int[] attendedClassesSub = new int[4];
@@ -54,6 +56,7 @@ public class attendsix extends AppCompatActivity {
         Button[] updateButton = new Button[4];
         Button[] addButton = new Button[4];
         Button[] subtractButton = new Button[4];
+        //Button btnClear = findViewById(R.id.clear);
 
         updateButton[0] = findViewById(R.id.updateButton1);
         updateButton[1] = findViewById(R.id.updateButton2);
@@ -160,13 +163,29 @@ public class attendsix extends AppCompatActivity {
     private void updateAttendancePercentage() {
         for (int i = 0; i < 4; i++) {
             double percentage = (double) attendedClassesSub[i] / totalClassesSub[i] * 100;
-            attendancePercentageTextView[i].setText("Attendance: " + attendedClassesSub[i] + "/" + totalClassesSub[i]);
+            attendancePercentageTextView[i].setText("Classes:" + attendedClassesSub[i] + "/" + totalClassesSub[i]);
 
             if (percentage >= 85) {
-                attendancePercentageTextView[i].append(" - You are good to go!");
+                attendancePercentageTextView[i].append("\nYou are good to go!");
             } else {
-                attendancePercentageTextView[i].append(" - Attendance is below 85%");
+                DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+                String formattedPercentage = decimalFormat.format(percentage);
+                attendancePercentageTextView[i].append("\nAttendance is: " + formattedPercentage + "%");
             }
         }
     }
+//    private void clearData() {
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        editor.clear();
+//        editor.apply();
+//
+//        for (int i = 0; i < 4; i++) {
+//            attendedClassesSub[i] = 0;
+//            totalClassesSub[i] = 0;
+//            attendedClassesEditText[i].setText("");
+//            totalClassesEditText[i].setText("");
+//            attendancePercentageTextView[i].setText("");
+//        }
+//    }
+
 }

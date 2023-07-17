@@ -1,5 +1,5 @@
 package com.example.app;
-
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,12 +15,17 @@ public class cgpa extends AppCompatActivity {
     public EditText[] etCredits = new EditText[8];
     public EditText[] etSGPA = new EditText[8];
     public Button btnCalculate;
+    public Button btnClear;
     public TextView tvResult;
+    private SharedPreferences sharedPreferences;
+    private static final String PREF_NAME = "CGPAPrefs";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cgpa);
+
+        sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
 
         // Initialize EditText fields for each semester's credits and SGPA
         etCredits[0] = findViewById(R.id.c1);
@@ -42,7 +47,17 @@ public class cgpa extends AppCompatActivity {
         etSGPA[7] = findViewById(R.id.s8);
 
         btnCalculate = findViewById(R.id.cal);
+        btnClear = findViewById(R.id.clear);
         tvResult = findViewById(R.id.t1);
+
+        // Restore previously entered values from SharedPreferences
+        for (int i = 0; i < 8; i++) {
+            String creditsValue = sharedPreferences.getString("credits_" + i, "");
+            String sgpaValue = sharedPreferences.getString("sgpa_" + i, "");
+
+            etCredits[i].setText(creditsValue);
+            etSGPA[i].setText(sgpaValue);
+        }
 
         btnCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,11 +65,20 @@ public class cgpa extends AppCompatActivity {
                 calculateCGPA();
             }
         });
+
+        btnClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearData();
+            }
+        });
     }
 
     public void calculateCGPA() {
         int[] credits = new int[8];
         float[] sgpa = new float[8];
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
         // Retrieve credits and SGPA for each semester from EditText fields
         for (int i = 0; i < 8; i++) {
@@ -70,11 +94,17 @@ public class cgpa extends AppCompatActivity {
             try {
                 credits[i] = Integer.parseInt(creditsStr);
                 sgpa[i] = Float.parseFloat(sgpaStr);
+
+                // Store the entered values in SharedPreferences
+                editor.putString("credits_" + i, creditsStr);
+                editor.putString("sgpa_" + i, sgpaStr);
             } catch (NumberFormatException e) {
                 tvResult.setText("Invalid input. Please enter valid numbers.");
                 return;
             }
         }
+
+        editor.apply(); // Save the entered values in SharedPreferences
 
         // Calculate CGPA
         float totalCredits = 0;
@@ -97,4 +127,16 @@ public class cgpa extends AppCompatActivity {
         tvResult.setText("Your CGPA: " + formattedCGPA);
     }
 
+    private void clearData() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear(); // Clear all stored values
+        editor.apply();
+
+        for (int i = 0; i < 8; i++) {
+            etCredits[i].setText(""); // Clear the EditText fields
+            etSGPA[i].setText("");
+        }
+
+        tvResult.setText(""); // Clear the CGPA result TextView
+    }
 }
