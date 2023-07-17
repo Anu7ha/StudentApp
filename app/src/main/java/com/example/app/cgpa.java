@@ -17,8 +17,10 @@ public class cgpa extends AppCompatActivity {
     public Button btnCalculate;
     public Button btnClear;
     public TextView tvResult;
-    private SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences;//used to store the values
     private static final String PREF_NAME = "CGPAPrefs";
+    //pref fine which is not visible but programmatically accessed,
+    //it is some called the internal storage that every app has within it
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,7 @@ public class cgpa extends AppCompatActivity {
         setContentView(R.layout.activity_cgpa);
 
         sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+        //mode_private it specifies that it accessed only by the calling application
 
         // Initialize EditText fields for each semester's credits and SGPA
         etCredits[0] = findViewById(R.id.c1);
@@ -51,6 +54,7 @@ public class cgpa extends AppCompatActivity {
         tvResult = findViewById(R.id.t1);
 
         // Restore previously entered values from SharedPreferences
+        //the values are overwritten
         for (int i = 0; i < 8; i++) {
             String creditsValue = sharedPreferences.getString("credits_" + i, "");
             String sgpaValue = sharedPreferences.getString("sgpa_" + i, "");
@@ -78,7 +82,8 @@ public class cgpa extends AppCompatActivity {
         int[] credits = new int[8];
         float[] sgpa = new float[8];
 
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();//the data is immediately stored using sp.E, in key value pair only
+                                                                    //one gone then editor.apply is used to apply all the changes to the disk
 
         // Retrieve credits and SGPA for each semester from EditText fields
         for (int i = 0; i < 8; i++) {
@@ -104,7 +109,7 @@ public class cgpa extends AppCompatActivity {
             }
         }
 
-        editor.apply(); // Save the entered values in SharedPreferences
+        editor.apply(); // Save the entered values in SharedPreferences into the disk
 
         // Calculate CGPA
         float totalCredits = 0;
