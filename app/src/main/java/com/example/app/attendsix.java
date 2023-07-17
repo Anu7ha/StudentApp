@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -121,13 +122,25 @@ public class attendsix extends AppCompatActivity {
         String attendedClassesStr = attendedClassesEditText[subjectIndex].getText().toString();
         String totalClassesStr = totalClassesEditText[subjectIndex].getText().toString();
 
-        if (!attendedClassesStr.isEmpty() && !totalClassesStr.isEmpty()) {
-            attendedClassesSub[subjectIndex] = Integer.parseInt(attendedClassesStr);
-            totalClassesSub[subjectIndex] = Integer.parseInt(totalClassesStr);
+        if (attendedClassesStr.isEmpty() || totalClassesStr.isEmpty()) {
+            Toast.makeText(this, "Please enter values for both attended and total classes.", Toast.LENGTH_SHORT).show();
+            return;
         }
+
+        int attendedClassesValue = Integer.parseInt(attendedClassesStr);
+        int totalClassesValue = Integer.parseInt(totalClassesStr);
+
+        if (attendedClassesValue < 0 || totalClassesValue <= 0 || attendedClassesValue > totalClassesValue) {
+            Toast.makeText(this, "Invalid input.Check the total classes section", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        attendedClassesSub[subjectIndex] = attendedClassesValue;
+        totalClassesSub[subjectIndex] = totalClassesValue;
 
         updateAttendancePercentage();
     }
+
 
     private void addAttendance(int subjectIndex) {
         attendedClassesSub[subjectIndex]++;

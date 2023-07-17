@@ -58,8 +58,22 @@ public class cgpa extends AppCompatActivity {
 
         // Retrieve credits and SGPA for each semester from EditText fields
         for (int i = 0; i < 8; i++) {
-            credits[i] = Integer.parseInt(etCredits[i].getText().toString());
-            sgpa[i] = Float.parseFloat(etSGPA[i].getText().toString());
+            String creditsStr = etCredits[i].getText().toString();
+            String sgpaStr = etSGPA[i].getText().toString();
+
+            // Check if the input fields are empty
+            if (creditsStr.isEmpty() || sgpaStr.isEmpty()) {
+                tvResult.setText("Please enter values for all semesters.");
+                return;
+            }
+
+            try {
+                credits[i] = Integer.parseInt(creditsStr);
+                sgpa[i] = Float.parseFloat(sgpaStr);
+            } catch (NumberFormatException e) {
+                tvResult.setText("Invalid input. Please enter valid numbers.");
+                return;
+            }
         }
 
         // Calculate CGPA
@@ -80,6 +94,7 @@ public class cgpa extends AppCompatActivity {
         String formattedCGPA = decimalFormat.format(cgpa);
 
         // Display CGPA
-        tvResult.setText("Your CGPA: " + cgpa);
+        tvResult.setText("Your CGPA: " + formattedCGPA);
     }
+
 }
