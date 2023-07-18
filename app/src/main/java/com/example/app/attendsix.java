@@ -163,9 +163,11 @@ public class attendsix extends AppCompatActivity {
     private void updateAttendancePercentage() {
         for (int i = 0; i < 4; i++) {
             double percentage = (double) attendedClassesSub[i] / totalClassesSub[i] * 100;
-            attendancePercentageTextView[i].setText("Classes:" + attendedClassesSub[i] + "/" + totalClassesSub[i]);
+            attendancePercentageTextView[i].setText("Classes: " + attendedClassesSub[i] + "/" + totalClassesSub[i]);
 
-            if (percentage >= 85) {
+            if (totalClassesSub[i] == 0) {
+                attendancePercentageTextView[i].append("\nAttendance is: 0%");
+            } else if (percentage >= 85) {
                 attendancePercentageTextView[i].append("\nYou are good to go!");
             } else {
                 DecimalFormat decimalFormat = new DecimalFormat("#0.00");
@@ -174,6 +176,7 @@ public class attendsix extends AppCompatActivity {
             }
         }
     }
+
 //    private void clearData() {
 //        SharedPreferences.Editor editor = sharedPreferences.edit();
 //        editor.clear();

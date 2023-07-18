@@ -44,10 +44,12 @@ public class attendance extends AppCompatActivity {
         attendancePercentageTextView[1] = findViewById(R.id.attendancePercentageTextView2);
         attendancePercentageTextView[2] = findViewById(R.id.attendancePercentageTextView3);
         attendancePercentageTextView[3] = findViewById(R.id.attendancePercentageTextView4);
+
         attendedClassesEditText[0] = findViewById(R.id.attendedClassesEditText1);
         attendedClassesEditText[1] = findViewById(R.id.attendedClassesEditText2);
         attendedClassesEditText[2] = findViewById(R.id.attendedClassesEditText3);
         attendedClassesEditText[3] = findViewById(R.id.attendedClassesEditText4);
+
         totalClassesEditText[0] = findViewById(R.id.totalClassesEditText1);
         totalClassesEditText[1] = findViewById(R.id.totalClassesEditText2);
         totalClassesEditText[2] = findViewById(R.id.totalClassesEditText3);
@@ -62,10 +64,12 @@ public class attendance extends AppCompatActivity {
         updateButton[1] = findViewById(R.id.updateButton2);
         updateButton[2] = findViewById(R.id.updateButton3);
         updateButton[3] = findViewById(R.id.updateButton4);
+
         addButton[0] = findViewById(R.id.addButton1);
         addButton[1] = findViewById(R.id.addButton2);
         addButton[2] = findViewById(R.id.addButton3);
         addButton[3] = findViewById(R.id.addButton4);
+
         subtractButton[0] = findViewById(R.id.subtractButton1);
         subtractButton[1] = findViewById(R.id.subtractButton2);
         subtractButton[2] = findViewById(R.id.subtractButton3);
@@ -163,9 +167,11 @@ public class attendance extends AppCompatActivity {
     private void updateAttendancePercentage() {
         for (int i = 0; i < 4; i++) {
             double percentage = (double) attendedClasses[i] / totalClasses[i] * 100;
-            attendancePercentageTextView[i].setText("Classes:" + attendedClasses[i] + "/" + totalClasses[i]);
+            attendancePercentageTextView[i].setText("Classes: " + attendedClasses[i] + "/" + totalClasses[i]);
 
-            if (percentage >= 85) {
+            if (totalClasses[i] == 0) {
+                attendancePercentageTextView[i].append("\nAttendance is: 0%");
+            } else if (percentage >= 85) {
                 attendancePercentageTextView[i].append("\nYou are good to go!");
             } else {
                 DecimalFormat decimalFormat = new DecimalFormat("#0.00");
